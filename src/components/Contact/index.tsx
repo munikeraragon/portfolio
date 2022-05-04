@@ -1,3 +1,3 @@
-import Work from './Contact';
+import Work from './Contact'
 
-export default Work;
+export default Work
