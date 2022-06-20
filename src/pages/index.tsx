@@ -2,9 +2,11 @@ import Navbar from '../ui/Navbar/Navbar'
 import Navigation from '../ui/Navigation/Navigation'
 import { useCallback, useEffect } from 'react'
 import { PageType, usePageAnimationStore } from '../store/usePageAnimationStore'
+import { ScreenType, useScreenType } from '../hooks/useScreenType'
 
 const Portfolio: React.FC = () => {
 	const { pages, currentPage, setCurrentPage, nextPage } = usePageAnimationStore()
+	const screenType = useScreenType()
 
 	useEffect(() => {
 		for (const [key, value] of Object.entries(pages)) {
@@ -31,17 +33,19 @@ const Portfolio: React.FC = () => {
 	return (
 		<div
 			onScroll={handleScroll}
-			className='w-screen h-screen overflow-scroll snap-y snap-mandatory flex flex-col items-center bg-black text-white'
+			className='w-screen md:h-screen md:overflow-scroll md:snap-y md:snap-mandatory flex flex-col items-center bg-black text-white'
 		>
-			<Navigation pages={pages} currentPage={currentPage} />
+			{[ScreenType.large, ScreenType.extraLarge].includes(screenType) && (
+				<Navigation pages={pages} currentPage={currentPage} />
+			)}
 
 			<Navbar
 				className='fixed mt-4'
 				isDarkPage={pages[currentPage].isDarkPage}
 				tabs={Object.keys(pages).map((key) => ({
 					label: key,
-					className: `${currentPage === key ? 'font-light' : 'font-light'}  transition duration-150
-					${pages[currentPage].className} text-md mr-3 my-4 text-lg`,
+					className: `${currentPage === key ? '' : ''}  transition duration-150
+					${pages[currentPage].className} text-md mr-3 my-4 text-lg font-bold`,
 				}))}
 			/>
 
@@ -49,7 +53,7 @@ const Portfolio: React.FC = () => {
 				<div
 					key={pageKey}
 					ref={pages[pageKey].ref}
-					className='snap-center min-h-screen flex flex-col items-center w-full'
+					className='snap-center md:min-h-screen flex flex-col items-center w-full'
 				>
 					{pages[pageKey].page}
 				</div>

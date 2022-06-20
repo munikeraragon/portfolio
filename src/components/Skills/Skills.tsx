@@ -105,12 +105,12 @@ const Skills: React.FC<SkillsProps> = ({ className = '' }) => {
 	const [selectedSkill, setSelectedSkill] = useState<SkillsType>('UI/UX Design')
 
 	return (
-		<div id='skills' className={`${className} flex flex-col w-full bg-black text-white min-h-screen`}>
-			<p className='text-3xl font-medium text-center mb-16 mt-28'>Skills</p>
-			<div className='grid grid-cols-2 justify-center max-w-6xl mx-auto w-full'>
-				<div className='flex flex-col flex-1 text-xl'>
+		<div id='skills' className={`${className} flex flex-col w-full bg-black text-white min-h-screen px-4`}>
+			<p className='text-2xl md:text-3xl font-medium text-center mb-12 md:mb-16 mt-16 md:mt-28'>Skills</p>
+			<div className='grid grid-cols-1 lg:grid-cols-2 justify-center max-w-6xl mx-auto w-full'>
+				<div className='flex flex-col flex-1 text-lg lg:text-xl'>
 					{Object.keys(skills).map((key) => (
-						<div key={key} className='my-6 flex'>
+						<div key={key} className='my-3 md:my-6 flex justify-center lg:justify-start'>
 							<button
 								onClick={() => setSelectedSkill(key as SkillsType)}
 								className={`${
@@ -127,7 +127,7 @@ const Skills: React.FC<SkillsProps> = ({ className = '' }) => {
 						{skills[selectedSkill].map(({ label, icon }) => (
 							<div
 								key={label}
-								className='flex h-24 w-24 items-center justify-center bg-gray-900 rounded m-8'
+								className='flex h:10 w-10 md:h-24 md:w-24 items-center justify-center md:bg-gray-900 rounded m-8'
 							>
 								{icon}
 							</div>
