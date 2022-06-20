@@ -30,9 +30,9 @@ const Project: React.FC = () => {
 					{projects[project].technologies.map((name) => (
 						<button
 							key={name}
-							className='py-1.5 border border-gray-500 mx-4 font-light text-sm
+							className='py-1.5 border border-gray-500 mx-2 font-light text-sm
 							rounded  hover:bg-black hover:text-white hover:border-black lg:w-32
-							 w-24 my-2'
+							px-4 my-2'
 						>
 							{name}
 						</button>

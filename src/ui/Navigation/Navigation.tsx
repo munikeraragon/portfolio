@@ -1,4 +1,5 @@
 import { memo, useCallback } from 'react'
+import { ScreenType, useScreenType } from '../../hooks/useScreenType'
 import { PageType } from '../../store/usePageAnimationStore'
 
 export interface NavigaitonProps {
@@ -26,6 +27,8 @@ const Bullet: React.FC<BulletProps> = ({ className = '', active, name, onClick =
 }
 
 const Navigation: React.FC<NavigaitonProps> = ({ className = '', pages, currentPage }) => {
+	const screenType = useScreenType()
+
 	const handleClick = useCallback(
 		(name: string) => {
 			for (const [key, value] of Object.entries(pages)) {
@@ -41,18 +44,20 @@ const Navigation: React.FC<NavigaitonProps> = ({ className = '', pages, currentP
 
 	return (
 		<div className={`${className} flex fixed bottom-16 right-16`}>
-			<ul className='flex flex-col items-center'>
-				{Object.keys(pages).map((key) => (
-					<li key={key}>
-						<Bullet
-							name={key}
-							active={key === currentPage}
-							onClick={handleClick}
-							className={`${pages[currentPage].className}`}
-						/>
-					</li>
-				))}
-			</ul>
+			{[ScreenType.large, ScreenType.extraLarge].includes(screenType) && (
+				<ul className='flex flex-col items-center'>
+					{Object.keys(pages).map((key) => (
+						<li key={key}>
+							<Bullet
+								name={key}
+								active={key === currentPage}
+								onClick={handleClick}
+								className={`${pages[currentPage].className}`}
+							/>
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }
