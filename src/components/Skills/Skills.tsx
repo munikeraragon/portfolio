@@ -78,7 +78,7 @@ const skills: SkillModel = {
 		{ label: 'Kubernets', icon: <KubernetsIcon /> },
 		{ label: 'Garden', icon: <GardenIcon /> },
 		{ label: 'Terraform', icon: <TerraformIcon /> },
-		{ label: 'Github', icon: <GithubActionsIcon /> },
+		{ label: 'Github Actions', icon: <GithubActionsIcon /> },
 		{ label: 'Azure', icon: <AzureDevopsIcon /> },
 		{ label: 'Jenkins', icon: <JenkinsIcon /> },
 		{ label: 'Github', icon: <GithubIcon /> },
@@ -126,7 +126,7 @@ const Skills: React.FC<SkillsProps> = ({ className = '' }) => {
 					<div className='grid grid-cols-4'>
 						{skills[selectedSkill].map(({ label, icon }) => (
 							<div
-								key={label}
+								key={selectedSkill + label}
 								className='flex h:10 w-10 md:h-24 md:w-24 items-center justify-center md:bg-gray-900 rounded m-8'
 							>
 								{icon}
